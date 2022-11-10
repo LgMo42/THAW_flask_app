@@ -1,0 +1,108 @@
+{% extends 'thawbase.html' %}
+{% block title %}{{ title }}{%endblock %}
+
+{% block content %}
+
+
+
+<div class="container">
+        <h2>Transaction Code: {{ code }}</h2>
+        <br/>
+        
+        {% if error_statement %}
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{ error_statement }}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+    
+          {% endif %}
+<!--
+             <h6> &emsp; Type: &emsp; {{ type }}</h6> 
+             <h6> &emsp; Value: &emsp; {{ value }}</h6> 
+             <h6> &emsp; Type of Value: &emsp; {{ valueType }}</h6>
+             <h6> &emsp; Date Used: &emsp; {{ dateU }}</h6> 
+-->
+
+<!-- Change output of client 'voucher' details from text to table as looks neater -->
+          <div class="container">    
+             <table>
+              <tr>
+                <td>Type:</td>
+                <td>&emsp;{{ type }}</td>
+              </tr>
+              <tr>
+                <td>Value</td>
+                <td>&emsp;{{ value }}</td>
+              </tr>
+              <tr>
+                <td>Type of Value:</td>
+                <td>&emsp;{{ valueType }}</td>
+              </tr>
+            </table>
+          </div>
+      
+    </div>
+
+<br/>
+
+   <div class="container">
+    <h6> If Date Used above is empty voucher has not been used. </h6>
+    <h6> Enter your store details and todays date then click sumbit to accept the voucher. </h6>
+
+    <br/>
+
+
+<!-- Form for store. Only the store is selectable, other fields are filled in from the database and are immutable-->
+    <form action="/accepted" method="POST">
+      Store Name:
+      <div class="form-group">
+        <!-- <input type="text" placeholder="Store" name='recipient' > -->
+        <!-- code changed from text input to drop down menu so onlt THAW linked stores can be selected -->
+        <select id="store" name="recipient">
+          <option value="Papdale">Papdale</option>
+          <option value="RGU">RGU</option>
+        </select>
+      </div>
+
+      Transaction Code:
+      <div class="form-group">
+        <input type="text" placeholder="Transaction Code" name='Rcode' value="{{ Rcode }}" readonly>
+      </div>
+
+      Type:
+      <div class="form-group">
+        <input type="text" placeholder="Type" name='type' value="{{ type }}" readonly>
+      </div>  
+      
+      Value:
+      <div class="form-group">
+        <input type="text" placeholder="Value" name='value' value="{{ value }}" readonly>
+      </div>
+      
+      Type of Value:
+      <div class="form-group">
+        <input type="text" placeholder="Type" name='valueType' value="{{ valueType }}" readonly>
+      </div>
+      
+      Date:
+      <div class="form-group">
+        <input type="date" placeholder="Date" name='date'  value="{{ today }}" readonly>
+      </div>
+      Comments:
+      <div class="form-group">
+        <input type="text" placeholder="Any notes go here" name='comments'  value="{{ comments }}" >
+      </div>
+<!-- adde info needed for new document but do hot want store to see as hidden fields -->      
+      <div class="form-group">
+        <input type="hidden" name='sender'  value="{{ sender }}" readonly>
+      </div>
+      <div class="form-group">
+        <input type="hidden" name='code'  value="{{ code }}" readonly>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</html>
+
+{% endblock %}

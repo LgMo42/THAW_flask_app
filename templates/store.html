@@ -1,0 +1,42 @@
+{% extends 'thawbase.html' %}
+{% block title %}{{ title }}{%endblock %}
+
+{% block content %}
+
+{% if error_statement %}
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ error_statement }}</strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+{% endif %}
+
+
+    
+<div style="display:inline-block; align-items: center;vertical-align:middle;">
+    <img src="{{ url_for('static', filename='images/THAW.jpg')}}" width ="200" alt="img"/>
+</div>
+<div style="display:inline-block;">
+    <p>
+    <h1> &emsp; THAW Store Transactions</h1>
+    </p>
+</div>
+<br/> <!-- add line break to space things out -->
+
+<!-- place in container to align with header -->
+<div class="container">
+    <h2>Check Transaction Code</h2>
+<br/>
+<form action="/codeok" method="POST" action="/create" enctype="mulipart/form-data">
+    <div class="form-group">
+          <input type="text" placeholder="Transaction Code" name='code' value="{{ code }}">      
+    </div> 
+     <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+  
+</html>
+
+{% endblock %}

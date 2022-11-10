@@ -1,0 +1,34 @@
+{% extends 'thawbase.html' %}
+{% block title %}{{ title }}{%endblock %}
+
+{% block content %}
+
+        
+      {% if error_statement %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{ error_statement }}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+      {% endif %}
+  
+
+<div class="container">
+  <h2>Refund has been completed for transaction code: {{ Ncode }} </h2>
+  <br/>
+
+  <form action="/walletinfo" method="POST" action="/create"  enctype="mulipart/form-data">
+    <div class="form-group">
+      <input type="hidden" name='Username'  value="{{ username }}" readonly>
+    </div>
+     <button type="submit" class="btn btn-primary">Return to Wallet</button>
+     <br/><br/>
+     <a href="{{url_for('logout')}}">Press here to logout</a>
+  </form>
+</div>
+<br/>
+
+
+
+</html>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+h1{
+    color:black;
+    font-size: 30px;
+}
+
+
+body{
+    background: white;
+}
+
+
+.table {
+    display: table;
+  }
+  
+  .table-row {
+    display: table-row;
+  }
+  
+  .table-cell {
+    display: table-cell;
+    border: 20px solid transparent !important;
+  }

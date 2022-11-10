@@ -1,0 +1,82 @@
+{% extends 'thawbase.html' %}
+{% block title %}{{ title }}{%endblock %}
+
+{% block content %}
+
+        
+        {% if error_statement %}
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{ error_statement }}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+    
+          {% endif %}
+
+<div class="container">
+<!--Use client username for refund -->
+    <form action="/refunded" method="POST" action="/create" enctype="mulipart/form-data">
+      Username to be refunded:
+      <div class="form-group">
+        <input type="text" placeholder="username" name='refundee' value="{{ refundee }}" >
+        </select>
+      </div>
+
+<!--Reason for refund -->
+      Enter the username of the person being refunded, your name and the reason for the refund:
+      <div class="form-group">
+        <input type="text" placeholder="comments" name='comments' value="{{ comments }}" >
+        </select>
+      </div>
+  <!-- is created by api an is immutable-->
+      Transaction Code:
+      <div class="form-group">
+        <input type="hidden" placeholder="Transaction Code" name='Rcode' value="{{ Rcode }}" readonly>
+      </div>
+  <!--A select box to reduce data errors -->
+      Select Type:
+      <div class="form-group">
+        <select id="type" name="type">
+          <option value="Food">Food</option>
+          <option value="Electricity">Electricity</option>
+          <option value="Cash">Cash</option>
+        </select>
+      </div>
+
+  <!-- Client can choose how much of balance to send to store wallet -->    
+      Type in the amount to be transfered:
+      <div class="form-group">
+        <input type="number" placeholder="e.g. 30 for £30" name='value' value="{{ value }}" >
+      </div>
+
+  <!-- Date and time set by API and is immutable -->
+      <div class="form-group">
+        <input type="hidden" placeholder="Date" name='date'  value="{{ today }}" readonly>
+      </div>
+       <div class="form-group">
+        <input type="hidden" placeholder="Time" name='date'  value="{{ now }}" readonly>
+      </div>
+      <br/>
+  <!-- added to form so can be retrieved and used by next page -->    
+      <div class="form-group">
+        <input type="hidden" name='sender'  value="{{ sender }}" readonly>
+      </div>
+      Food balance before payment
+      <div class="form-group">
+        <input type="number" name='food'  value="{{ food }}" readonly>
+      </div>
+      Electricity balance before payment
+      <div class="form-group">
+        <input type="number" name='elec'  value="{{ elec }}" readonly>
+      </div>
+      Cash balance before payment
+      <div class="form-group">
+        <input type="number" name='cash'  value="{{ cash }}" readonly>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+
+</html>
+
+{% endblock %}

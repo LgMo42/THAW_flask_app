@@ -1,0 +1,25 @@
+{% extends 'thawbase.html' %}
+{% block title %}{{ title }}{%endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <h5>Sent in the last 4 weeks:</h5>
+    {% for table in tables %}
+            {{ table|safe }}
+    {% endfor %}
+
+    <form action="/walletinfo" method="POST" action="/create" enctype="form-data">
+        <br/><button type="submit" class="btn btn-primary">Return to Wallet</button>
+    </form>
+
+    <form action="/logout" method="POST" action="/create" enctype="form-data"></form>
+        <br/><a href="{{ url_for('logout') }}" class="btn btn-primary">Logout</a>
+    </form>
+</div>
+
+</html>
+
+
+{% endblock %}

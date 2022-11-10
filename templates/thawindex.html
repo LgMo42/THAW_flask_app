@@ -1,0 +1,50 @@
+{% extends 'thawbase.html' %}
+{% block title %}Welcome to THAW{%endblock %}
+
+{% block content %}
+
+{% if error_statement %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{ error_statement }}</strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+{% endif %}
+
+<div style="display:inline-block; align-items: center;vertical-align:middle;">
+  <img src="{{ url_for('static', filename='images/THAW.jpg')}}" width ="200" alt="img"/>
+</div>
+<div style="display:inline-block;">
+  <p>
+  <h1> &emsp; Welcome to the THAW API</h1>
+  </p>
+</div>
+
+<br/><br/>
+
+<!-- place in container to align with header -->
+<div class="container">
+  <h2>Enter your THAW ID and password:</h2><br/>
+  <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      {{ form.username.label(class="form-label") }}
+      {{ form.username(class="form-control") }}<br/>
+      {{ form.password.label(class="form-label")  }}
+      {{ form.password(class="form-control") }}<br/>
+      {{ form.submit(class="btn btn-primary") }}
+  </form>
+</div>
+
+<br/><br/>
+
+<div class="container">
+  <h2>Or click the Register button to register:</h2>
+<form action="/register" method="POST" action="/create" enctype="form-data">
+   <button type="submit" class="btn btn-primary">Register</button>
+</form>
+</div>
+
+  
+</html>
+
+{% endblock %}
